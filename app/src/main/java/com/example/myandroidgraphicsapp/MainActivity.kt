@@ -5,12 +5,12 @@ import android.os.Bundle
 
 class MainActivity : AppCompatActivity() {
     lateinit var glView: CircleView
-    lateinit var squareInCircleView: SquareInCircleView
+    lateinit var squareInCircleView: MyView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         glView = CircleView(this)
-        squareInCircleView = SquareInCircleView(this)
+        squareInCircleView = MyView(this)
         setContentView(squareInCircleView)
     }
 }

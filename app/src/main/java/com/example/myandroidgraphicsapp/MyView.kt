@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.*
 import android.view.View
 
-class SquareInCircleView(context: Context) : View(context) {
+class MyView(context: Context) : View(context) {
     private var paintGreen: Paint = Paint()
     private var paintRed: Paint = Paint()
     private var polygonPath: Path = Path()
@@ -73,11 +73,25 @@ class SquareInCircleView(context: Context) : View(context) {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        //drawSquareCircleBorderExample(canvas)
+        //drawPolygonFillStrokeExample(canvas)
+        translatePolygonExample(canvas)
+    }
+
+    //circle and square example
+    private fun drawSquareCircleBorderExample(canvas: Canvas?) {
         canvas?.drawRect(500F, 500F, 700F, 700F, paintGreen)
         canvas?.drawCircle(600F, 600F, 145F, paintRed)
-        //canvas?.drawPath(polygonPath, paintBlue)
-        // canvas?.drawPath(polygonPath, paintBlack)
-        //canvas?.drawCircle(250F, 280F, 200F, paintRed)
+    }
+
+    //fill stroke polygon example
+    private fun drawPolygonFillStrokeExample(canvas: Canvas?) {
+        canvas?.drawPath(polygonPath, paintBlue)
+        canvas?.drawPath(polygonPath, paintBlack)
+    }
+
+    //Translate polygon
+    private fun translatePolygonExample(canvas: Canvas?) {
         canvas?.drawPath(polygonWithLinearGradient, polygonWithLinearGradientPaint)
         updatePolygon(translate(polygonPoints, 80, 100))
         canvas?.drawPath(polygonWithLinearGradient, polygonWithLinearGradientPaint)
@@ -103,7 +117,7 @@ class SquareInCircleView(context: Context) : View(context) {
         for (i in 0 until vertices.size) {
             val t = matrix[0][0] * vertices[i].x + matrix[0][1] * vertices[i].y + matrix[0][2]
             val u = matrix[1][0] * vertices[i].x + matrix[1][1] * vertices[i].y + matrix[1][2]
-            result[i] = Point(t.toInt(), u.toInt())
+            result[i] = Point(t, u)
         }
         return result
     }
